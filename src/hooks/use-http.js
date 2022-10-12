@@ -2,13 +2,13 @@ import { useState } from 'react';
 
 //. this component should be able to deal with all kinds of requests
 
-const useHttp = (requestConfig, applyData) => {
+const useHttp = () => {
     //.applydata is a function that deals with the data
     const [isLoading, setIsLoading] = useState(false);
     const [error, setError] = useState(null);
     // const [tasks, setTasks] = useState([]); //. we weould want to delete this because it is too specific, we should be able to use it with any kinda data,
 
-    const sendRequest = async () => {
+    const sendRequest = async (requestConfig, applyData) => { //'move these two parameters from useHttp function to sendRequest requestion function so that they are internal dependecies➡️ app.js
         setIsLoading(true);
         setError(null);
         try {

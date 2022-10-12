@@ -17,14 +17,14 @@ function App() {
     setTasks(loadedTasks);
 
   }
-  const httpData = useHttp({url:'https://react-c749e-default-rtdb.firebaseio.com/tasks.json'}, transformTask) 
+  const httpData = useHttp() 
 
   const {isLoading,error,sendRequest} = httpData
   
 
   useEffect(() => {
-    sendRequest();
-  }, []);
+    sendRequest({url:'https://react-c749e-default-rtdb.firebaseio.com/tasks.json'},transformTask);
+  }, [sendRequest]);//'now moved two arguments to useEffect.
 
   const taskAddHandler = (task) => {
     setTasks((prevTasks) => prevTasks.concat(task));
