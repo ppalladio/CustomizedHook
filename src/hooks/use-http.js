@@ -13,9 +13,11 @@ const useHttp = (requestConfig, applyData) => {
         setError(null);
         try {
             const response = await fetch(requestConfig.url, {
-                method: requestConfig.method,
-                headers: requestConfig.headers,
-                body: JSON.stringify(requestConfig.body),
+                method: requestConfig.method ? requestConfig.method : 'GET', //.check if method is set manually, if not, refault valus would be GET
+                headers: requestConfig.headers ? requestConfig.headers : {},
+                body: requestConfig.body
+                    ? JSON.stringify(requestConfig.body)
+                    : null,
             });
 
             if (!response.ok) {
